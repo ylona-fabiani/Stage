@@ -1,0 +1,4 @@
+1. Il ne faut pas utiliser eval(), il ne permet pas une protection contre l'injection de code. Car, ce dernier va prendre un string et le transofrmer en expression py
+
+
+2. utiliser @st.cache
