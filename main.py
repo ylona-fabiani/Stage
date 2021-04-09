@@ -25,11 +25,11 @@ def f_user():
     #        x = x_min + (dist / samples * i)  # find step of iteration
     #       rows.append(eval(f_input))  # append() add sth at the end
     #       index.append(x)  # same
-    lin = np.linspace(start=x_min, stop=x_max, num=samples)
+    lin = np.linspace(start=x_min, stop=x_max, num=samples)  # linspace maps values from x_min to x_max w/ samples in an array
 
     st.write("Chart:")
     df = pd.DataFrame(
-        data=map(lambda x: eval(f_input), lin),
+        data=map(lambda x: eval(f_input), lin),  # map f(x) with the linspace
         index=lin,
         columns=[f_input])
     st.line_chart(df)
