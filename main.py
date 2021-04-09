@@ -16,20 +16,21 @@ def f_user():
     x_min = st.sidebar.number_input("x_min?", step=0.5)
     x_max = st.sidebar.number_input("x_max?", step=0.5)
     st.write("Your x_min is: ", x_min, "Your x_max is: ", x_max)
-    # dist = x_max - x_min
+    dist = x_max - x_min
     # rows = []  # results f_input(x)
     # index = []  # absciss
-    samples = st.sidebar.number_input("Sample size?", 0, 10000, 100)
+    samples = st.sidebar.number_input("Sample size?", 0, 10000, 10)
 
-#    for i in range(samples):
-#        x = x_min + (dist / samples * i)  # find step of iteration
-#       rows.append(eval(f_input))  # append() add sth at the end
-#       index.append(x)  # same
-    index = np.linspace(x_min, x_max, samples)
+    #    for i in range(samples):
+    #        x = x_min + (dist / samples * i)  # find step of iteration
+    #       rows.append(eval(f_input))  # append() add sth at the end
+    #       index.append(x)  # same
+    lin = np.linspace(start=x_min, stop=x_max, num=samples)
+
     st.write("Chart:")
     df = pd.DataFrame(
-        eval(f_input),
-        index,
+        data=map(lambda x: eval(f_input), lin),
+        index=lin,
         columns=[f_input])
     st.line_chart(df)
 
