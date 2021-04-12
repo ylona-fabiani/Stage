@@ -8,7 +8,21 @@ st.write("# My first challenge")
 
 
 @st.cache(suppress_st_warning=True)
-def f_user():
+def lins(min, max, nb_samples):
+    return np.linspace(start=min, stop=max, num=nb_samples)
+
+
+@st.cache(suppress_st_warning=True)
+def data_frame(input_user, lins, min, max, nb_samples):
+    lin = lins(min, max, nb_samples)
+    df = pd.DataFrame(
+        data=map(lambda x: eval(input_user), lin),  # map f(x) with the linspace
+        index=lin,
+        columns=[input_user])
+    return df
+
+
+if __name__ == '__main__':
     x = 2
     f_input = st.sidebar.text_input("Enter a python function:", "x")
     st.sidebar.latex(f_input)
@@ -19,20 +33,5 @@ def f_user():
 
     samples = st.sidebar.number_input("Sample size?", 0, 10000, 10)
 
-    lin = np.linspace(start=x_min, stop=x_max, num=samples)  # linspace maps values from x_min to x_max
-
     st.write("Chart:")
-    st.line_chart(data_frame(f_input, lin))
-
-
-@st.cache(suppress_st_warning=True)
-def data_frame(input_user, linspace):
-    df = pd.DataFrame(
-        data=map(lambda x: eval(input_user), linspace),  # map f(x) with the linspace
-        index=linspace,
-        columns=[input_user])
-    return df
-
-
-if __name__ == '__main__':
-    f_user()
+    st.line_chart(data_frame(f_input, lins, x_min, x_max, samples))
