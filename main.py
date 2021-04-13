@@ -1,17 +1,18 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import math
+import math  # need it for f_input
 import sympy as sp
 
-st.write("# My first challenge")
+st.write("# Function Plot")
 
 
+@st.cache
 def lins(min, max, nb_samples):
     return np.linspace(start=min, stop=max, num=nb_samples)
 
 
-@st.cache()
+@st.cache
 def compute_samples(input_user, lins, min, max, nb_samples):
     lin = lins(min, max, nb_samples)
     df = pd.DataFrame(
