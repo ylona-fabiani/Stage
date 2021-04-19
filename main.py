@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import math  # need it for f_input
 import sympy as sp
+from sympy import SympifyError
 
 st.write("# Function Plot")
 
@@ -23,11 +24,15 @@ def compute_samples(input_user, lins, min, max, nb_samples):
 
 
 if __name__ == '__main__':
-    x = 2
+    x = sp.symbols('x')
     f_input = st.sidebar.text_input("Enter a python function:", "x*x")
-    st.sidebar.latex(f_input)
+    try:
+        expr = sp.sympify(f_input)
+        st.sidebar.latex(f_input)
+    except SympifyError:
+        st.error("An error as occurred, please try again.")
 
-    x_min = st.sidebar.number_input("x_min?", step=0.5, value=1.0, help="Choose a max value for your x")
+    x_min = st.sidebar.number_input("x_min?", step=0.5, value=1.0, help="Choose a min value for your x")
     x_max = st.sidebar.number_input("x_max?", step=0.5, value=5.0, help="Choose a max value for your x")
     st.write("Your x_min is: ", x_min, "Your x_max is: ", x_max)
 
