@@ -4,6 +4,8 @@ import pandas as pd
 import math  # need it for f_input
 import sympy as sp
 from sympy import SympifyError
+from sympy.core.function import UndefinedFunction
+
 
 st.write("# Function Plot")
 
@@ -17,7 +19,7 @@ def lins(min, max, nb_samples):
 def compute_samples(user_input, lins, min, max, nb_samples):
     lin = lins(min, max, nb_samples)
     df = pd.DataFrame(
-        data=map(lambda x: user_input.evalf, lin),  # map f(x) with the linspace
+        data=map(lambda x: user_input.evalf(), lin),  # map f(x) with the linspace
         index=lin,
         columns=[user_input])
     return df
@@ -28,7 +30,7 @@ if __name__ == '__main__':
     f_input = st.sidebar.text_input("Enter a python function:", "x*x")
     try:
         expr = sp.sympify(f_input)
-        st.sidebar.write(sp.latex(expr))
+        st.sidebar.latex(expr)
     except SympifyError:
         st.error("An error as occurred, please try again.")
 
