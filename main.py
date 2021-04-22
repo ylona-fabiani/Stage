@@ -31,7 +31,7 @@ if __name__ == '__main__':
     f_input = st.sidebar.text_input("Enter a python function:", "x*x")
     try:
         expr = sp.sympify(f_input)
-        if expr.atoms(AppliedUndef):
+        if expr.atoms(AppliedUndef, UndefinedFunction):
             st.error("An error has occurred, the function %s is not valid." % expr)
         st.sidebar.latex(expr)
     except SympifyError:
