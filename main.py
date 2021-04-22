@@ -5,21 +5,22 @@ import math  # need it for f_input
 import sympy as sp
 from sympy import SympifyError
 from sympy.core.function import UndefinedFunction
+from sympy.core.function import AppliedUndef
 
 
 st.write("# Function Plot")
 
 
 @st.cache
-def lins(min, max, nb_samples):
-    return np.linspace(start=min, stop=max, num=nb_samples)
+def lins(mini, maxi, nb_samples):
+    return np.linspace(start=mini, stop=maxi, num=nb_samples)
 
 
 @st.cache
-def compute_samples(user_input, lins, min, max, nb_samples):
-    lin = lins(min, max, nb_samples)
+def compute_samples(user_input, mini, maxi, nb_samples):
+    lin = lins(mini, maxi, nb_samples)
     df = pd.DataFrame(
-        data=map(lambda x: user_input.evalf(), lin),  # map f(x) with the linspace
+        data=map(lambda x: float(user_input.evalf(subs={'x': x})), lin),  # map f(x) with the linspace
         index=lin,
         columns=[user_input])
     return df
@@ -30,6 +31,8 @@ if __name__ == '__main__':
     f_input = st.sidebar.text_input("Enter a python function:", "x*x")
     try:
         expr = sp.sympify(f_input)
+        if expr.atoms(AppliedUndef):
+            st.error("An error has occurred, the function %s is not valid." % expr)
         st.sidebar.latex(expr)
     except SympifyError:
         st.error("An error as occurred, please try again.")
@@ -42,4 +45,4 @@ if __name__ == '__main__':
                                                                           "10000")
 
     st.write("Chart:")
-    st.line_chart(compute_samples(expr, lins, x_min, x_max, samples))
+    st.line_chart(compute_samples(expr, x_min, x_max, samples))
