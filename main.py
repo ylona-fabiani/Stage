@@ -28,7 +28,7 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
 def main():
     st.set_page_config(page_title="Function Plot", layout="wide", initial_sidebar_state="expanded")
     st.write("# Function Plot")
-    st.sidebar.write("**Function Definition**")
+    st.sidebar.write("**Function Definition:**")
     # use a relatively complex default expression to serve as an example of the type of operations available to the user
     f_input = st.sidebar.text_input("Enter a mathematical expression:", "1 / (1 + exp(-2 * pi * x))")
     st.sidebar.write("*For a full list of available functions click "
@@ -52,7 +52,7 @@ def main():
 
     samples = st.sidebar.number_input("Number of samples", 0, 10000, 100)
 
-    st.write("Function plot over interval [%s, %s] " % (x_max, x_min))
+    st.write("Function plot over interval [%s, %s] " % (x_min, x_max))
     st.line_chart(compute_samples(f_input, expr, x_min, x_max, samples))
 
 
