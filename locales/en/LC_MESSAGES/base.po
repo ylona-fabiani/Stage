@@ -1,6 +1,5 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR ORGANIZATION
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# ENGLISH TRANSLATION
+# Copyright (C) 2021
 #
 msgid ""
 msgstr ""
