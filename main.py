@@ -31,7 +31,7 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
 
 def main():
     st.set_page_config(page_title="Function Plot", layout="wide", initial_sidebar_state="expanded")
-    language = st.sidebar.selectbox("Languages:", ('English', 'Français'))
+    language = st.sidebar.selectbox("", ('English', 'Français'))
     if language == 'English':
         en = gettext.translation('base', localedir='locales', languages=['en'])
         en.install()

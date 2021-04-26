@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-26 16:34+0200\n"
+"POT-Creation-Date: 2021-04-26 16:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,55 +15,59 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 
 
-#: main.py:37
+#: main.py:34
+msgid "Languages:"
+msgstr ""
+
+#: main.py:43
 msgid "# Function Plot"
 msgstr ""
 
-#: main.py:38
+#: main.py:44
 msgid "**Function Definition:**"
 msgstr ""
 
-#: main.py:40
+#: main.py:46
 msgid "Enter a mathematical expression:"
 msgstr ""
 
-#: main.py:41
+#: main.py:47
 msgid "*For a full list of available functions click "
 msgstr ""
 
-#: main.py:46
+#: main.py:52
 msgid "Could not parse the input expression (%s), please enter a valid mathematical expression"
 msgstr ""
 
-#: main.py:51
+#: main.py:57
 msgid "Invalid input, the function '%s' is not defined."
 msgstr ""
 
-#: main.py:54
+#: main.py:60
 msgid "Input must be a single-variable function of 'x'. You may not use a '%s' variable!"
 msgstr ""
 
-#: main.py:56
+#: main.py:62
 msgid "**Plot interval:**"
 msgstr ""
 
-#: main.py:57
+#: main.py:63
 msgid "Minimum value of 'x'"
 msgstr ""
 
-#: main.py:58
+#: main.py:64
 msgid "Maximum value of 'x'"
 msgstr ""
 
-#: main.py:60
+#: main.py:66
 msgid "Number of samples"
 msgstr ""
 
-#: main.py:62
+#: main.py:68
 msgid "Function plot over interval [%s, %s] "
 msgstr ""
 
-#: main.py:78
+#: main.py:84
 msgid "An unexpected error has occurred! Please verify your input and try again."
 msgstr ""
 
