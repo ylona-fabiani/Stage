@@ -27,8 +27,8 @@ msgid "Enter a mathematical expression:"
 msgstr "Ecrivez une expression mathématiques :"
 
 #: main.py:36
-msgid "*For a full list of available functions click "
-msgstr "*Pour avoir la liste complète des fonctions disponibles cliquez "
+msgid "*For a full list of available functions click [here]"
+msgstr "*Pour avoir la liste complète des fonctions disponibles cliquez [ici]"
 
 #: main.py:41
 msgid "Could not parse the input expression (%s), please enter a valid mathematical expression"

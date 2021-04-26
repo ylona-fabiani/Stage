@@ -44,8 +44,8 @@ def main():
     st.sidebar.write(_("**Function Definition:**"))
     # use a relatively complex default expression to serve as an example of the type of operations available to the user
     f_input = st.sidebar.text_input(_("Enter a mathematical expression:"), "1 / (1 + exp(-2 * pi * x))")
-    st.sidebar.write(_("*For a full list of available functions click "),
-                     "[here](https://docs.sympy.org/latest/modules/functions/index.html#contents)*")
+    st.sidebar.write(_("*For a full list of available functions click [here]"),
+                     "(https://docs.sympy.org/latest/modules/functions/index.html#contents)*")
     try:
         expr = sp.sympify(f_input)
     except SympifyError as e:

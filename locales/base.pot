@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-26 16:46+0200\n"
+"POT-Creation-Date: 2021-04-26 16:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,10 +14,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 
-
-#: main.py:34
-msgid "Languages:"
-msgstr ""
 
 #: main.py:43
 msgid "# Function Plot"
@@ -32,7 +28,7 @@ msgid "Enter a mathematical expression:"
 msgstr ""
 
 #: main.py:47
-msgid "*For a full list of available functions click "
+msgid "*For a full list of available functions click [here]"
 msgstr ""
 
 #: main.py:52
