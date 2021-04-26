@@ -10,7 +10,9 @@ from typing import Optional
 from traceback import print_exc
 import gettext
 
+
 _ = gettext.gettext
+
 
 @st.cache
 def lins(mini, maxi, nb_samples):
@@ -29,6 +31,15 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
 
 def main():
     st.set_page_config(page_title="Function Plot", layout="wide", initial_sidebar_state="expanded")
+    language = st.sidebar.selectbox("Languages:", ('English', 'Français'))
+    if language == 'English':
+        en = gettext.translation('base', localedir='locales', languages=['en'])
+        en.install()
+        _ = en.gettext
+    if language == 'Français':
+        fr = gettext.translation('base', localedir='locales', languages=['fr'])
+        fr.install()
+        _ = fr.gettext
     st.write(_("# Function Plot"))
     st.sidebar.write(_("**Function Definition:**"))
     # use a relatively complex default expression to serve as an example of the type of operations available to the user
