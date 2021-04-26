@@ -1,0 +1,68 @@
+# FRENCH TRANSLATION
+# Copyright (C) 2021
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2021-04-26 16:07+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+
+#: main.py:32
+msgid "# Function Plot"
+msgstr "# Tracé de fonction"
+
+#: main.py:33
+msgid "**Function Definition:**"
+msgstr "**Définition de la fonction**"
+
+#: main.py:35
+msgid "Enter a mathematical expression:"
+msgstr "Ecrivez une expression mathématiques :"
+
+#: main.py:36
+msgid "*For a full list of available functions click "
+msgstr "*Pour avoir la liste complète des fonctions disponibles cliquez "
+
+#: main.py:41
+msgid "Could not parse the input expression (%s), please enter a valid mathematical expression"
+msgstr "L'expression saisie (%s) n'a pas pu être analysée, veuillez entrer une expression valide"
+
+#: main.py:46
+msgid "Invalid input, the function '%s' is not defined."
+msgstr "Saisie erronée, la fonction '%s' n'est pas définie."
+
+#: main.py:49
+msgid "Input must be a single-variable function of 'x'. You may not use a '%s' variable!"
+msgstr "La saisie doit être une fonction à variable unique de 'x'. Vous ne pouvez pas utiliser '%s' comme variable !"
+
+#: main.py:51
+msgid "**Plot interval:**"
+msgstr "**Intervalle d'affichage :**"
+
+#: main.py:52
+msgid "Minimum value of 'x'"
+msgstr "Valeur minimale de 'x'"
+
+#: main.py:53
+msgid "Maximum value of 'x'"
+msgstr "Valeur maximale de 'x'"
+
+#: main.py:55
+msgid "Number of samples"
+msgstr "Nombre d'échantillons"
+
+#: main.py:57
+msgid "Function plot over interval [%s, %s] "
+msgstr "Intervalle d'affichage de la fonction [%s, %s] "
+
+#: main.py:73
+msgid "An unexpected error has occurred! Please verify your input and try again."
+msgstr "Une erreur est survenue ! Vérifiez votre saisie et réessayez."
+
