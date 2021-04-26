@@ -8,7 +8,9 @@ from sympy.core.function import UndefinedFunction
 from sympy.core.function import AppliedUndef
 from typing import Optional
 from traceback import print_exc
+import gettext
 
+_ = gettext.gettext
 
 @st.cache
 def lins(mini, maxi, nb_samples):
@@ -27,32 +29,32 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
 
 def main():
     st.set_page_config(page_title="Function Plot", layout="wide", initial_sidebar_state="expanded")
-    st.write("# Function Plot")
-    st.sidebar.write("**Function Definition:**")
+    st.write(_("# Function Plot"))
+    st.sidebar.write(_("**Function Definition:**"))
     # use a relatively complex default expression to serve as an example of the type of operations available to the user
-    f_input = st.sidebar.text_input("Enter a mathematical expression:", "1 / (1 + exp(-2 * pi * x))")
-    st.sidebar.write("*For a full list of available functions click "
+    f_input = st.sidebar.text_input(_("Enter a mathematical expression:"), "1 / (1 + exp(-2 * pi * x))")
+    st.sidebar.write(_("*For a full list of available functions click "),
                      "[here](https://docs.sympy.org/latest/modules/functions/index.html#contents)*")
     try:
         expr = sp.sympify(f_input)
     except SympifyError as e:
-        raise UserError("Could not parse the input expression (%s), please enter a valid mathematical expression" % e.expr, cause=e)
+        raise UserError(_("Could not parse the input expression (%s), please enter a valid mathematical expression") % e.expr, cause=e)
     st.sidebar.latex(expr)
 
     undefined_functions = expr.atoms(AppliedUndef, UndefinedFunction)
     if undefined_functions:
-        raise UserError("Invalid input, the function '%s' is not defined." % list(undefined_functions)[0].name)
+        raise UserError(_("Invalid input, the function '%s' is not defined.") % list(undefined_functions)[0].name)
     for symbol in expr.free_symbols:
         if str(symbol) != 'x':
-            raise UserError("Input must be a single-variable function of 'x'. You may not use a '%s' variable!" % symbol)
+            raise UserError(_("Input must be a single-variable function of 'x'. You may not use a '%s' variable!") % symbol)
 
-    st.sidebar.write("**Plot interval:**")
-    x_min = st.sidebar.number_input("Minimum value of 'x'", step=0.5, value=-1.0)
-    x_max = st.sidebar.number_input("Maximum value of 'x'", step=0.5, value=1.0)
+    st.sidebar.write(_("**Plot interval:**"))
+    x_min = st.sidebar.number_input(_("Minimum value of 'x'"), step=0.5, value=-1.0)
+    x_max = st.sidebar.number_input(_("Maximum value of 'x'"), step=0.5, value=1.0)
 
-    samples = st.sidebar.number_input("Number of samples", 0, 10000, 100)
+    samples = st.sidebar.number_input(_("Number of samples"), 0, 10000, 100)
 
-    st.write("Function plot over interval [%s, %s] " % (x_min, x_max))
+    st.write(_("Function plot over interval [%s, %s] ") % (x_min, x_max))
     st.line_chart(compute_samples(f_input, expr, x_min, x_max, samples))
 
 
@@ -68,6 +70,6 @@ if __name__ == "__main__":
     except UserError as e:
         st.error(e.userMessage)
     except BaseException as e:
-        st.error("An unexpected error has occurred! Please verify your input and try again.")
+        st.error(_("An unexpected error has occurred! Please verify your input and try again."))
         print_exc()
 
