@@ -65,7 +65,6 @@ def get_session_headers(timeout=5):
 def main():
     st.set_page_config(page_title="Function Plot", layout="wide", initial_sidebar_state="expanded")
     acc_lan = detect_locale(get_session_headers(5))
-    print(acc_lan)
     language = None
     if acc_lan == 'fr':
         language = st.sidebar.selectbox("", ('Français', 'English'))
