@@ -32,24 +32,6 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
     return df
 
 
-def parse_accept_language(accept_language):
-    if accept_language is not None:
-        languages = accept_language.split(",")
-    locale_q_pairs = []
-
-    for language in languages:
-        if language is not None and language.split(";")[0] == language:
-            # no q => q = 1
-            locale_q_pairs.append((language.strip(), "1"))
-        else:
-            if language is not None:
-                locale = language.split(";")[0].strip()
-                q = language.split(";")[1].split("=")[1]
-            locale_q_pairs.append((locale, q))
-
-    return locale_q_pairs
-
-
 def detect_locale(accept_language):
     default_locale = 'en'
     supported_locale = ['en', 'fr']
