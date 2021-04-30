@@ -9,6 +9,9 @@ from sympy.core.function import AppliedUndef
 from typing import Optional
 from traceback import print_exc
 import gettext
+from streamlit.report_thread import get_report_ctx
+from streamlit.server.server import Server
+import time
 
 
 _ = gettext.gettext
@@ -29,9 +32,64 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
     return df
 
 
+def parse_accept_language(accept_language):
+    if accept_language is not None:
+        languages = accept_language.split(",")
+    locale_q_pairs = []
+
+    for language in languages:
+        if language is not None and language.split(";")[0] == language:
+            # no q => q = 1
+            locale_q_pairs.append((language.strip(), "1"))
+        else:
+            if language is not None:
+                locale = language.split(";")[0].strip()
+                q = language.split(";")[1].split("=")[1]
+            locale_q_pairs.append((locale, q))
+
+    return locale_q_pairs
+
+
+def detect_locale(accept_language):
+    default_locale = 'en'
+    supported_locale = ['en', 'fr']
+
+    locale_q_pairs = parse_accept_language(accept_language)
+    for pair in locale_q_pairs:
+        for locale in supported_locale:
+            # pair[0] is locale, pair[1] is q value
+            if pair[0].replace('-', '_').lower().startswith(locale.lower()):
+                return locale
+
+    return default_locale
+
+
+def get_session_headers(timeout=5):
+    # script execution may start before a websocket connection is established, this operation will block execution until
+    # a connection is made, and the corresponding information is populated under session_info
+    ctx = get_report_ctx()
+    session_info = Server.get_current()._session_info_by_id[ctx.session_id]
+    increment = .05
+    max_retries = timeout / increment
+    i = 0
+    while session_info.ws is None and i < max_retries:
+        i += 1
+        time.sleep(increment)
+    if session_info.ws is None:
+        return None
+    return session_info.ws.request.headers['Accept-Language']
+
+
 def main():
     st.set_page_config(page_title="Function Plot", layout="wide", initial_sidebar_state="expanded")
-    language = st.sidebar.selectbox("", ('English', 'Français'))
+    acc_lan = detect_locale(get_session_headers(5))
+    print(acc_lan)
+    language = None
+    if acc_lan == 'fr':
+        language = st.sidebar.selectbox("", ('Français', 'English'))
+    if acc_lan == 'en':
+        st.sidebar.selectbox("", ('English', 'Français'))
+
     if language == 'English':
         en = gettext.translation('base', localedir='locales', languages=['en'])
         en.install()
