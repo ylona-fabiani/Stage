@@ -88,11 +88,9 @@ def main():
 
     if language == 'English':
         en = gettext.translation('base', localedir='locales', languages=['en'])
-        en.install()
         _ = en.gettext
     if language == 'Français':
         fr = gettext.translation('base', localedir='locales', languages=['fr'])
-        fr.install()
         _ = fr.gettext
     st.write(_("# Function Plot"))
     st.sidebar.write(_("**Function Definition:**"))
