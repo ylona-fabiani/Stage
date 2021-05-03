@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import math  # need it for f_input
 import sympy as sp
 from sympy import SympifyError
 from sympy.core.function import UndefinedFunction
