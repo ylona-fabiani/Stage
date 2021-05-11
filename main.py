@@ -11,6 +11,7 @@ import gettext
 from streamlit.report_thread import get_report_ctx
 from streamlit.server.server import Server
 import time
+from sympy.calculus.util import continuous_domain
 
 
 _ = gettext.gettext
@@ -21,11 +22,29 @@ def lins(mini, maxi, nb_samples):
     return np.linspace(start=mini, stop=maxi, num=nb_samples)
 
 
+class Evaluator:
+    def __init__(self, expr, domain):
+        self.expr = expr
+        self.domain = domain
+
+    def eval(self, x):
+        if self.domain.contains(x):
+            return float(self.expr.evalf(subs={'x': x}))
+        else:
+            return float('NaN')
+
+
 @st.cache
 def compute_samples(user_input, expr, mini, maxi, nb_samples):
     lin = lins(mini, maxi, nb_samples)
+    interval = sp.Interval(mini, maxi)
+    domain = continuous_domain(expr, sp.Symbol('x'), interval)
+    for x in domain.boundary:
+        lin = np.append(lin, float(x))
+    lin = np.sort(lin)
+
     df = pd.DataFrame(
-        data=map(lambda x: float(expr.evalf(subs={'x': x})), lin),  # map f(x) with the linspace
+        data=map(Evaluator(expr, domain).eval, lin),  # map f(x) with the linspace
         index=lin,
         columns=[user_input])
     return df
