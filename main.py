@@ -28,6 +28,7 @@ def compute_samples(user_input, expr, mini, maxi, nb_samples):
         data=map(lambda x: float(expr.evalf(subs={'x': x})), lin),  # map f(x) with the linspace
         index=lin,
         columns=[user_input])
+    df.at[0, user_input] = float('NaN')
     return df
 
 
